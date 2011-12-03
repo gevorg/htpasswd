@@ -13,9 +13,43 @@ Via [npm](http://npmjs.org/):
 ```bash
 $ npm install htpasswd
 ```	
+## Usage
+
+```bash
+$ htpasswd [-cpD] passwordfile username
+$ htpasswd -b[cpD] passwordfile username password
+
+$ htpasswd -n[p] username
+$ htpasswd -nb[p] username password
+```	
+
+## Arguments
+
+ - `-c` - Create a new file.
+ - `-n` - Don't update file; display results on stdout.
+ - `-p` - Do not encrypt the password (plaintext).
+ - `-b` - Use the password from the command line rather than prompting for it.
+ - `-D` - Use the password from the command line rather than prompting for it.
+
+## Running tests
+
+It uses [nodeunit](https://github.com/caolan/nodeunit/), so just run following command in package directory:
+
+```bash
+$ nodeunit tests/*
+```
+
 ## Issues
 
 You can find list of issues using **[this link](http://github.com/gevorg/htpasswd/issues)**.
+
+## Dependencies
+
+ - **[commander](https://github.com/visionmedia/commander.js/)** - node.js command-line interfaces made easy.
+
+## Development dependencies
+
+ - **[nodeunit](https://github.com/caolan/nodeunit/)** - Easy unit testing in node.js and the browser, based on the assert module.
 
 ## License
 
