@@ -29,7 +29,7 @@ $ htpasswd -nb[p] username password
  - `-n` - Don't update file; display results on stdout.
  - `-p` - Do not encrypt the password (plaintext).
  - `-b` - Use the password from the command line rather than prompting for it.
- - `-D` - Use the password from the command line rather than prompting for it.
+ - `-D` - Delete the specified user.
 
 ## Running tests
 
