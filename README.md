@@ -11,7 +11,7 @@ $ git clone git://github.com/gevorg/htpasswd.git
 Via [npm](http://npmjs.org/):
 
 ```bash
-$ npm install htpasswd
+$ npm install -g htpasswd
 ```	
 ## Usage
 
