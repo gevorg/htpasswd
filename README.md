@@ -1,4 +1,4 @@
-# http-auth
+# htpasswd
 [Node.js](http://nodejs.org/) package for htpasswd utility.
 
 ## Installation
