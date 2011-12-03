@@ -1,5 +1,5 @@
 # htpasswd
-[Node.js](http://nodejs.org/) package for htpasswd utility.
+[Node.js](http://nodejs.org/) package for HTTP Basic Authentication password file utility.
 
 ## Installation
 
@@ -36,7 +36,7 @@ $ htpasswd -nb[p] username password
 It uses [nodeunit](https://github.com/caolan/nodeunit/), so just run following command in package directory:
 
 ```bash
-$ nodeunit tests/*
+$ nodeunit tests
 ```
 
 ## Issues
