@@ -1,7 +1,7 @@
 {
 	"name": "htpasswd",
 	"description": "Node.js package for HTTP Basic Authentication password file utility.",
-	"version": "1.0.9",
+	"version": "1.1.0",
 	"author": "Gevorg Harutyunyan (http://github.com/gevorg)",
 	"maintainers": [
 		{
@@ -28,7 +28,7 @@
 		"url": "http://github.com/gevorg/htpasswd/issues"
 	},
 	"dependencies": {
-		"commander": "0.4.2"
+		"commander": "0.5.1"
 	},
 	"devDependencies": {
 		"nodeunit": "0.6.4"
