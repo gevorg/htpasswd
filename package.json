@@ -28,7 +28,7 @@
 		"url": "http://github.com/gevorg/htpasswd/issues"
 	},
 	"dependencies": {
-		"commander": "0.5.1"
+		"commander": "1.0.4"
 	},
 	"devDependencies": {
 		"nodeunit": "0.6.4"
