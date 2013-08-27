@@ -28,6 +28,7 @@
 		"url": "http://github.com/gevorg/htpasswd/issues"
 	},
 	"dependencies": {
+		"coffee-script": "1.6.3",
 		"commander": "1.3.2"
 	},
 	"devDependencies": {

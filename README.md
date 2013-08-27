@@ -53,6 +53,7 @@ You can find list of issues using **[this link](http://github.com/gevorg/htpassw
 ## Dependencies
 
  - **[commander](https://github.com/visionmedia/commander.js/)** - node.js command-line interfaces made easy.
+ - **[coffee-script](http://coffeescript.org/)** - CoffeeScript is a little language that compiles into JavaScript.
 
 ## Development dependencies
 
