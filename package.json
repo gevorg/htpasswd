@@ -16,7 +16,7 @@
 	},
 	"main": "./lib/htpasswd.js",
 	"bin": {
-		"htpasswd": "./lib/htpasswd-bin.js"
+		"htpasswd": "./lib/htpasswd.js"
 	},
 	"licenses": [
 		{

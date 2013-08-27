@@ -3,3 +3,4 @@ node_modules
 .project
 htpasswd.iml
 .idea
+.settings
