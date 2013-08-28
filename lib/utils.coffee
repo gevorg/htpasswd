@@ -18,7 +18,7 @@ module.exports =
       password = program.args[program.args.length - 1]
       # Encode.
       if not program.plaintext
-        password = '{SHA}' + @sha1 password        
+        password = '{SHA}' + module.exports.sha1 password        
       # Return result.
       username + ':' + password
       
@@ -26,5 +26,5 @@ module.exports =
   validate: (hash, password) ->
     if (hash.substr 0,5) is '{SHA}'
       hash = hash.substr 5
-      password = @sha1 password      
+      password = module.exports.sha1 password      
     hash is password

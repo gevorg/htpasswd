@@ -20,7 +20,7 @@ module.exports =
  
   # Processing command.
   process: (program) ->
-    if @validate program
+    if module.exports.validate program
       if not program.batch and not program.delete
         # Try to read password.
         program.password 'New password: ', (password1) ->
@@ -32,7 +32,7 @@ module.exports =
               console.error "Password verification error."
             process.stdin.destroy()
       else
-        @finalize program
+        module.exports.finalize program
     else 
       program.help()
       
@@ -42,7 +42,7 @@ module.exports =
       console.log utils.encode program
     else       
       try
-        @syncFile program
+        module.exports.syncFile program
       catch error
         console.error error.message
         
