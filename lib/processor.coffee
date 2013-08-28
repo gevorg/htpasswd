@@ -60,11 +60,10 @@ module.exports =
         console.error "Cannot modify file #{passwordFile}; use '-c' to create it."
         return
         
-      fileData = fs.readFileSync passwordFile, 'UTF-8'
-      lines = fileData.split "\n"
+      lines = (fs.readFileSync passwordFile, 'UTF-8').split "\n"
       
       for line, i in lines
-        if (line.indexOf "#{username}\:") is 0
+        if (line.indexOf "#{username}:") is 0
           found = true
           
           if program.delete # Deletion case.
