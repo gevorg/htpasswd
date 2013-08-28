@@ -3,7 +3,7 @@ utils = require '../lib/utils'
 
 module.exports =
 
-  # Test for ssh1 function.
+  # Test for SHA1 function.
   testSHA1: (test) ->
     test.equal (utils.sha1 "devochka"), "deWaCTR7rOMysgZN3EgtgAaTzPs=", "SHA1 is wrong!"
     test.done()
