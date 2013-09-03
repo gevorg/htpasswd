@@ -2,6 +2,7 @@
 [Node.js](http://nodejs.org/) package for HTTP Basic Authentication password file utility.
 
 [![Build Status](https://api.travis-ci.org/gevorg/htpasswd.png)](https://travis-ci.org/gevorg/htpasswd)
+[![Dependency Status](https://david-dm.org/gevorg/htpasswd.png)](https://david-dm.org/gevorg/htpasswd)
 
 ## Installation
 
