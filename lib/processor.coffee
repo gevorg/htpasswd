@@ -4,6 +4,9 @@ utils = require './utils'
 # FS module.
 fs = require 'fs'
 
+# Prompt module.
+prompt = require 'prompt'
+
 ## Module for processing command.
 module.exports =
 
@@ -18,19 +21,31 @@ module.exports =
     # Validating argument count.
     expectedArgs is program.args.length     
  
+  # Read password.
+  readPassword: (program) ->
+    # Prepare prompt.
+    prompt.message = ""
+    prompt.delimiter = ""
+    
+    # Prepare options.
+    options = [
+      {name: 'password', description: 'New password:', hidden: true}, 
+      {name: 'rePassword', description: 'Re-type new password:', hidden: true}
+    ]
+    
+    # Try to read password.
+    prompt.get options, (err, result) ->
+      if result.password is result.rePassword
+        program.args.push result.password
+        module.exports.finalize program
+      else
+        console.error "Password verification error."
+    
   # Processing command.
   process: (program) ->
     if module.exports.validate program
       if not program.batch and not program.delete
-        # Try to read password.
-        program.password 'New password: ', (password1) ->
-          program.password 'Re-type new password: ', (password2) ->
-            if password1 is password2
-              program.args.push password2
-              module.exports.finalize program
-            else
-              console.error "Password verification error."
-            process.stdin.destroy()
+        module.exports.readPassword program
       else
         module.exports.finalize program
     else 

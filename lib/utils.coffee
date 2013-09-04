@@ -21,10 +21,3 @@ module.exports =
         password = '{SHA}' + module.exports.sha1 password        
       # Return result.
       username + ':' + password
-      
-  # Validates password based on hash.
-  validate: (hash, password) ->
-    if (hash.substr 0,5) is '{SHA}'
-      hash = hash.substr 5
-      password = module.exports.sha1 password      
-    hash is password

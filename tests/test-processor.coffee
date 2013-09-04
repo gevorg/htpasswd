@@ -35,7 +35,8 @@ module.exports =
 
   # Test for process password function.
   testProcessPassword: (test) ->
-    program = {'nofile': true, 'args': ["lianna"], 'password': () -> test.done()}  
+    processor.readPassword = () -> test.done()
+    program = {'nofile': true, 'args': ["lianna"]}  
     processor.process program
     
   # Test for process help function.
