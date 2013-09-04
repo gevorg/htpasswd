@@ -33,7 +33,7 @@
 		"prompt": "0.2.11"
 	},
 	"devDependencies": {
-		"nodeunit": "0.7.4"
+		"nodeunit": "0.8.1"
 	},
 	"engines": {
 		"node": ">=0.4.1"
