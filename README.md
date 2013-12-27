@@ -19,20 +19,24 @@ $ npm install -g htpasswd
 ## Usage
 
 ```bash
-$ htpasswd [-cpD] passwordfile username
-$ htpasswd -b[cpD] passwordfile username password
+$ htpasswd [-cidpsDv] passwordfile username
+$ htpasswd -b[cdpsDv] passwordfile username password
 
-$ htpasswd -n[p] username
-$ htpasswd -nb[p] username password
+$ htpasswd -n[idps] username
+$ htpasswd -nb[dps] username password
 ```	
 
 ## Options
 
+ - `-b` - Use the password from the command line rather than prompting for it. This option should be used with extreme care, since the password is clearly visible on the command line. For script use see the -i option.
+ - `-i` - Read the password from stdin without verification (for script usage).
  - `-c` - Create a new file.
  - `-n` - Don't update file; display results on stdout.
+ - `-d` - Use crypt() encryption for passwords. This algorithm limits the password length to 8 characters.
+ - `-s` - Use SHA encryption for passwords. This is the default.
  - `-p` - Do not encrypt the password (plaintext).
- - `-b` - Use the password from the command line rather than prompting for it.
  - `-D` - Delete the specified user.
+ - `-v` - Verify password. Verify that the given password matches the password of the user stored in the specified htpasswd file.
 
 ## Running tests
 
@@ -56,6 +60,7 @@ You can find list of issues using **[this link](http://github.com/gevorg/htpassw
  - **[commander](https://github.com/visionmedia/commander.js/)** - node.js command-line interfaces made easy.
  - **[coffee-script](http://coffeescript.org/)** - CoffeeScript is a little language that compiles into JavaScript.
  - **[prompt](https://github.com/flatiron/prompt)** - a beautiful command-line prompt for node.js.
+ - **[crypt3](https://github.com/Sendanor/node-crypt3)** - crypt(3) for Node.js.
 
 ## Development dependencies
 
