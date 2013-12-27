@@ -1,6 +1,9 @@
 # Importing crypto module.
 crypto = require 'crypto'
 
+# Importing crypt3 module.
+crypt3 = require 'crypt3'
+
 #  Module for utility functionalities.
 module.exports =
 
@@ -9,15 +12,24 @@ module.exports =
     hash = crypto.createHash 'sha1'
     hash.update password
     hash.digest 'base64'
-  
-  # Encodes username and password for output.
+
+  # Verifies if password is correct.
+  verify: (hash, password) ->
+    if (hash.substr 0, 5) is '{SHA}'
+      hash = hash.substr 5
+      password = module.exports.sha1 password
+    (hash is password) or ((crypt3 password, hash) is hash)
+
+  # Encodes password hash for output.
   encode: (program) ->
     if not program.delete
       # Get username and password.
-      username = program.args[program.args.length - 2]
       password = program.args[program.args.length - 1]
       # Encode.
       if not program.plaintext
-        password = '{SHA}' + module.exports.sha1 password        
+        if program.crypt
+          password = crypt3 password, (crypt3.createSalt().substr 3, 2)
+        else
+          password = '{SHA}' + module.exports.sha1 password
       # Return result.
-      username + ':' + password
+      password

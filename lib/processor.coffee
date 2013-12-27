@@ -40,11 +40,26 @@ module.exports =
         module.exports.finalize program
       else
         console.error "Password verification error."
-    
-  # Processing command.
+
+  # Read password from stdin.
+  readPasswordStdIn: (program) ->
+    password = ""
+
+    # Reading pass.
+    process.stdin.on 'data', (chunk) ->
+      password += chunk
+
+    # Finished reading.
+    process.stdin.on 'end', () ->
+      program.args.push password
+      module.exports.finalize program
+
+# Processing command.
   process: (program) ->
     if module.exports.validate program
-      if not program.batch and not program.delete
+      if program.stdin
+        module.exports.readPasswordStdIn program
+      else if not program.batch and not program.delete
         module.exports.readPassword program
       else
         module.exports.finalize program
@@ -54,7 +69,10 @@ module.exports =
   # Finalizes processing by printing output or changing password file. 
   finalize: (program) ->
     if program.nofile
-      console.log utils.encode program
+      username = program.args[0]
+      hash = utils.encode program
+      # Print to stdout.
+      console.log "#{username}:#{hash}"
     else       
       try
         module.exports.syncFile program
@@ -65,7 +83,8 @@ module.exports =
   syncFile: (program) ->
     passwordFile = program.args[0]
     username = program.args[1]
-    writeData = utils.encode program
+    password = program.args[2]
+    hash = utils.encode program
 
     found = false
     newLines = []
@@ -80,21 +99,30 @@ module.exports =
       for line, i in lines
         if (line.indexOf "#{username}:") is 0
           found = true
-          
-          if program.delete # Deletion case.
+
+          if program.verify
+            # For verification we need existing data.
+            [username, hash] = line.split ":"
+
+            if (utils.verify hash, password)
+              console.log "Password for user #{username} correct."
+            else
+              console.log "Password verification failed."
+          else if program.delete # Deletion case.
             console.log "Deleting password for user #{username}."
           else # Updating password.      
-            newLines.push writeData
+            newLines.push "#{username}:#{hash}"
             console.log "Updating password for user #{username}."
         else if line # Remove empty lines.
           newLines.push line
-            
-    if not found # Adding user to existing file.
-      if program.delete
-        console.error "User #{username} not found."
-      else 
-        newLines.push writeData
-        console.log "Adding password for user #{username}."
-    
-    # Write data.
-    fs.writeFileSync passwordFile, (newLines.join "\n") + "\n", 'UTF-8'
+
+    if not program.verify
+      if not found # Adding user to existing file.
+        if program.delete
+          console.error "User #{username} not found."
+        else
+          newLines.push "#{username}:#{hash}"
+          console.log "Adding password for user #{username}."
+
+      # Write data.
+      fs.writeFileSync passwordFile, (newLines.join "\n") + "\n", 'UTF-8'

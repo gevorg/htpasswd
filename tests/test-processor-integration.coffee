@@ -25,6 +25,36 @@ module.exports =
     processor.process program   
     test.done()
 
+# Test for process with successful password verification.
+  testProcessVerifyOk: (test) ->
+    fs.writeFileSync "password.txt", "detka:milaya\n", 'UTF-8'
+    program = {'batch': true, 'verify': true, plain: true, 'args': ["password.txt", "detka", "milaya"]}
+    preservedLog = console.log
+
+    console.log = () ->
+      console.log = preservedLog
+      console.log.apply console, arguments
+
+      test.equals arguments[0], "Password for user detka correct.", "Output is wrong!"
+
+    processor.process program
+    test.done()
+
+  # Test for process with failed password verification.
+  testProcessVerifyFailed: (test) ->
+    fs.writeFileSync "password.txt", "detka:nemilaya\n", 'UTF-8'
+    program = {'batch': true, 'verify': true, plain: true, 'args': ["password.txt", "detka", "milaya"]}
+    preservedLog = console.log
+
+    console.log = () ->
+      console.log = preservedLog
+      console.log.apply console, arguments
+
+      test.equals arguments[0], "Password verification failed.", "Output is wrong!"
+
+    processor.process program
+    test.done()
+
   # Test for process with file create.
   testProcessFileCreate: (test) ->
     program = {'batch': true, 'create': true, 'args': ["password.txt", "gevorg", "sho"]}

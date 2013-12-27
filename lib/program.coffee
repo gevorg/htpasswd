@@ -8,22 +8,26 @@ program = require 'commander'
 program
   .version(settings.version)
   .usage("[options] [passwordfile] username [password]")
+  .option('-b, --batch', "Use the password from the command line rather than prompting for it. This option should be used with extreme care, since the password is clearly visible on the command line. For script use see the -i option.")
+  .option('-i, --stdin', "Read the password from stdin without verification (for script usage).")
   .option('-c, --create', "Create a new file.")
   .option('-n, --nofile', "Don't update file; display results on stdout.")
+  .option('-d, --crypt', "Use crypt() encryption for passwords. This algorithm limits the password length to 8 characters.")
+  .option('-s, --sha', "Use SHA encryption for passwords. This is the default.")
   .option('-p, --plaintext', "Do not encrypt the password (plaintext).")
-  .option('-b, --batch', "Use the password from the command line rather than prompting for it.")
   .option('-D, --delete', "Delete the specified user.")
+  .option('-v, --verify', "Verify password. Verify that the given password matches the password of the user stored in the specified htpasswd file.")
 
 # Custom help.
 program.on '--help', () ->
   console.log """
     Examples: 
       
-      htpasswd [-cpD] passwordfile username
-      htpasswd -b[cpD] passwordfile username password
+      htpasswd [-cidpsDv] passwordfile username
+      htpasswd -b[cdpsDv] passwordfile username password
   
-      htpasswd -n[p] username
-      htpasswd -nb[p] username password
+      htpasswd -n[idps] username
+      htpasswd -nb[dps] username password
         
     """
 
