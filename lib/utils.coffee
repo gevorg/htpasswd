@@ -1,8 +1,8 @@
 # Importing crypto module.
 crypto = require 'crypto'
 
-# Importing crypt3 module.
-crypt3 = require 'crypt3'
+# Importing apache-crypt module.
+crypt3 = require 'apache-crypt'
 
 #  Module for utility functionalities.
 module.exports =
@@ -17,8 +17,9 @@ module.exports =
   verify: (hash, password) ->
     if (hash.substr 0, 5) is '{SHA}'
       hash = hash.substr 5
-      password = module.exports.sha1 password
-    (hash is password) or ((crypt3 password, hash) is hash)
+      hash is module.exports.sha1 password
+    else
+      (hash is password) or ((crypt3 password, hash) is hash)
 
   # Encodes password hash for output.
   encode: (program) ->
@@ -28,7 +29,7 @@ module.exports =
       # Encode.
       if not program.plaintext
         if program.crypt
-          password = crypt3 password, (crypt3.createSalt().substr 3, 2)
+          password = crypt3 password
         else
           password = '{SHA}' + module.exports.sha1 password
       # Return result.

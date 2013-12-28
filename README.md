@@ -60,7 +60,7 @@ You can find list of issues using **[this link](http://github.com/gevorg/htpassw
  - **[commander](https://github.com/visionmedia/commander.js/)** - node.js command-line interfaces made easy.
  - **[coffee-script](http://coffeescript.org/)** - CoffeeScript is a little language that compiles into JavaScript.
  - **[prompt](https://github.com/flatiron/prompt)** - a beautiful command-line prompt for node.js.
- - **[crypt3](https://github.com/Sendanor/node-crypt3)** - crypt(3) for Node.js.
+ - **[apache-crypt](https://github.com/gevorg/apache-crypt)** - Node.js module for Apache style password encryption using crypt(3).
 
 ## Development dependencies
 

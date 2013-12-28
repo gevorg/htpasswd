@@ -1,8 +1,8 @@
 # Importing module.
 utils = require '../lib/utils'
 
-# Importing crypt3 module.
-crypt3 = require 'crypt3'
+# Importing apache-crypt module.
+crypt3 = require 'apache-crypt'
 
 module.exports =
 
