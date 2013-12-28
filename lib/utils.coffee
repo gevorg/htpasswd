@@ -4,6 +4,9 @@ crypto = require 'crypto'
 # Importing apache-crypt module.
 crypt3 = require 'apache-crypt'
 
+# Importing apache-md5 module.
+md5 = require 'apache-md5'
+
 #  Module for utility functionalities.
 module.exports =
 
@@ -18,6 +21,8 @@ module.exports =
     if (hash.substr 0, 5) is '{SHA}'
       hash = hash.substr 5
       hash is module.exports.sha1 password
+    else if (hash.substr 0, 6) is '$apr1$'
+      hash is md5(password, hash)
     else
       (hash is password) or ((crypt3 password, hash) is hash)
 
@@ -30,7 +35,9 @@ module.exports =
       if not program.plaintext
         if program.crypt
           password = crypt3 password
-        else
+        else if program.sha
           password = '{SHA}' + module.exports.sha1 password
+        else
+          password = md5(password)
       # Return result.
       password

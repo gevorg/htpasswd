@@ -12,8 +12,9 @@ program
   .option('-i, --stdin', "Read the password from stdin without verification (for script usage).")
   .option('-c, --create', "Create a new file.")
   .option('-n, --nofile', "Don't update file; display results on stdout.")
+  .option('-m, --md5', "Use MD5 encryption for passwords. This is the default.")
   .option('-d, --crypt', "Use crypt() encryption for passwords. This algorithm limits the password length to 8 characters.")
-  .option('-s, --sha', "Use SHA encryption for passwords. This is the default.")
+  .option('-s, --sha', "Use SHA encryption for passwords.")
   .option('-p, --plaintext', "Do not encrypt the password (plaintext).")
   .option('-D, --delete', "Delete the specified user.")
   .option('-v, --verify', "Verify password. Verify that the given password matches the password of the user stored in the specified htpasswd file.")
@@ -23,11 +24,11 @@ program.on '--help', () ->
   console.log """
     Examples: 
       
-      htpasswd [-cidpsDv] passwordfile username
-      htpasswd -b[cdpsDv] passwordfile username password
+      htpasswd [-cimdpsDv] passwordfile username
+      htpasswd -b[cmdpsDv] passwordfile username password
   
-      htpasswd -n[idps] username
-      htpasswd -nb[dps] username password
+      htpasswd -n[imdps] username
+      htpasswd -nb[mdps] username password
         
     """
 

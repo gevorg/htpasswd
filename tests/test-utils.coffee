@@ -4,6 +4,9 @@ utils = require '../lib/utils'
 # Importing apache-crypt module.
 crypt3 = require 'apache-crypt'
 
+# Importing apache-md5 module.
+md5 = require 'apache-md5'
+
 module.exports =
 
   # Test for SHA1 function.
@@ -24,7 +27,7 @@ module.exports =
 
   # Test for encode with sha1 option.
   testEncodeSHA1: (test) ->
-    encoded = utils.encode {'args': ["olga", "chexova111"]}
+    encoded = utils.encode {'sha': true, 'args': ["olga", "chexova111"]}
     test.equal encoded, "{SHA}Iv8c5zqtbvxiwFTxcEI6CteSx48=", "Should be sha1!"
     test.done()
 
@@ -34,7 +37,13 @@ module.exports =
     test.equal (crypt3 "chexova111", encoded), encoded, "Password is wrong!"
     test.done()
 
-  # Test for verify with correct plain pass.
+  # Test for MD5 option.
+  testEncodeMD5: (test) ->
+    encoded = utils.encode {'args': ["kia", "siara"]}
+    test.equal (md5 "siara", encoded), encoded, "Password is wrong!"
+    test.done()
+
+# Test for verify with correct plain pass.
   testVerifyPlainOk: (test) ->
     test.ok utils.verify "plainPassword", "plainPassword"
     test.done()
@@ -62,4 +71,14 @@ module.exports =
   # Test for verify with wrong crypt pass.
   testVerifyCryptFailed: (test) ->
     test.ok not utils.verify "hVmhA.naUQQ3I", "serob"
+    test.done()
+
+  # Test for verify with correct MD5 pass.
+  testVerifyMD5Ok: (test) ->
+    test.ok utils.verify "$apr1$Ny3hkBdz$UReNPq7yEH6Y/D/FXUPwI/", "mia"
+    test.done()
+
+  # Test for verify with wrong MD5 pass.
+  testVerifyMD5Failed: (test) ->
+    test.ok not utils.verify "$apr1$Ny3hkBdz$UReNPq7yEH6Y/D/FXUPwI/", "leo"
     test.done()

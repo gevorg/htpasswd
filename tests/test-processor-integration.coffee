@@ -13,7 +13,7 @@ module.exports =
   
   # Test for process with console output. 
   testProcessConsole: (test) ->
-    program = {'batch': true, 'nofile': true, 'args': ["mary", "pass12"]}
+    program = {'batch': true, 'nofile': true, 'sha': true, 'args': ["mary", "pass12"]}
     preservedLog = console.log 
 
     console.log = () ->
@@ -57,7 +57,7 @@ module.exports =
 
   # Test for process with file create.
   testProcessFileCreate: (test) ->
-    program = {'batch': true, 'create': true, 'args': ["password.txt", "gevorg", "sho"]}
+    program = {'batch': true, 'sha': true, 'create': true, 'args': ["password.txt", "gevorg", "sho"]}
     processor.process program
   
     fileData = fs.readFileSync "password.txt", 'UTF-8'
@@ -68,7 +68,7 @@ module.exports =
   # Test for process with file update.
   testProcessFileUpdate: (test) ->
     fs.writeFileSync "password.txt", "mihrdat:{SHA}NSjjR5VzkksaQNgdEKs0MqPtStI=\n", 'UTF-8'
-    program = {'batch': true, 'args': ["password.txt", "mihrdat", "king"]}
+    program = {'batch': true, 'sha': true, 'args': ["password.txt", "mihrdat", "king"]}
     processor.process program
   
     fileData = fs.readFileSync "password.txt", 'UTF-8'
@@ -108,7 +108,7 @@ module.exports =
     initData = "mihrdat:{SHA}NSjjR5VzkksaQNgdEKs0MqPtStI=\n"
     fs.writeFileSync "password.txt", initData, 'UTF-8'
   
-    program = {'batch': true, 'args': ["password.txt", "tigran", "thegreat"]}
+    program = {'sha': true, 'batch': true, 'args': ["password.txt", "tigran", "thegreat"]}
     processor.process program
   
     fileData = fs.readFileSync "password.txt", 'UTF-8'
