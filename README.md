@@ -19,11 +19,11 @@ $ npm install -g htpasswd
 ## Usage
 
 ```bash
-$ htpasswd [-cidpsDv] passwordfile username
-$ htpasswd -b[cdpsDv] passwordfile username password
+$ htpasswd [-cimdpsDv] passwordfile username
+$ htpasswd -b[cmdpsDv] passwordfile username password
 
-$ htpasswd -n[idps] username
-$ htpasswd -nb[dps] username password
+$ htpasswd -n[imdps] username
+$ htpasswd -nb[mdps] username password
 ```	
 
 ## Options
@@ -32,8 +32,9 @@ $ htpasswd -nb[dps] username password
  - `-i` - Read the password from stdin without verification (for script usage).
  - `-c` - Create a new file.
  - `-n` - Don't update file; display results on stdout.
- - `-d` - Use crypt() encryption for passwords. This algorithm limits the password length to 8 characters.
- - `-s` - Use SHA encryption for passwords. This is the default.
+ - `-m` - Use MD5 encryption for passwords. This is the default.
+ - `-d` - Use crypt() encryption for passwords. This algorithm limits the password length to 8 characters. This algorithm is insecure by today's standards.
+ - `-s` - Use SHA encryption for passwords. This algorithm is insecure by today's standards.
  - `-p` - Do not encrypt the password (plaintext).
  - `-D` - Delete the specified user.
  - `-v` - Verify password. Verify that the given password matches the password of the user stored in the specified htpasswd file.
