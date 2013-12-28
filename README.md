@@ -62,6 +62,7 @@ You can find list of issues using **[this link](http://github.com/gevorg/htpassw
  - **[coffee-script](http://coffeescript.org/)** - CoffeeScript is a little language that compiles into JavaScript.
  - **[prompt](https://github.com/flatiron/prompt)** - a beautiful command-line prompt for node.js.
  - **[apache-crypt](https://github.com/gevorg/apache-crypt)** - Node.js module for Apache style password encryption using crypt(3).
+ - **[apache-md5](https://github.com/gevorg/apache-md5)** - Node.js module for Apache style password encryption using md5.
 
 ## Development dependencies
 
