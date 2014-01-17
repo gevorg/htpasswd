@@ -1,8 +1,11 @@
 # Importing crypto module.
 crypto = require 'crypto'
 
-# Importing apache-crypt module.
-crypt3 = require 'apache-crypt'
+if require('os').platform() != 'win32'
+  # Importing apache-crypt module.
+  crypt3 = require 'apache-crypt'
+else
+  crypt3 = () ->
 
 # Importing apache-md5 module.
 md5 = require 'apache-md5'
