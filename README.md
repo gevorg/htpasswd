@@ -19,11 +19,11 @@ $ npm install -g htpasswd
 ## Usage
 
 ```bash
-$ htpasswd [-cimdpsDv] passwordfile username
-$ htpasswd -b[cmdpsDv] passwordfile username password
+$ htpasswd [-cimpsDv] passwordfile username
+$ htpasswd -b[cmpsDv] passwordfile username password
 
-$ htpasswd -n[imdps] username
-$ htpasswd -nb[mdps] username password
+$ htpasswd -n[imps] username
+$ htpasswd -nb[mps] username password
 ```	
 
 ## Options
@@ -61,8 +61,11 @@ You can find list of issues using **[this link](http://github.com/gevorg/htpassw
  - **[commander](https://github.com/visionmedia/commander.js/)** - node.js command-line interfaces made easy.
  - **[coffee-script](http://coffeescript.org/)** - CoffeeScript is a little language that compiles into JavaScript.
  - **[prompt](https://github.com/flatiron/prompt)** - a beautiful command-line prompt for node.js.
- - **[apache-crypt](https://github.com/gevorg/apache-crypt)** - Node.js module for Apache style password encryption using crypt(3).
  - **[apache-md5](https://github.com/gevorg/apache-md5)** - Node.js module for Apache style password encryption using md5.
+
+## Optional dependencies
+
+ - **[apache-crypt](https://github.com/gevorg/apache-crypt)** - Node.js module for Apache style password encryption using crypt(3). (DOES NOT WORK ON WINDOWS)
 
 ## Development dependencies
 
