@@ -4,6 +4,9 @@ settings = require '../package.json'
 # Importing commander module.
 program = require 'commander'
 
+# Importing utils module.
+utils = require './utils'
+
 # Setting up program.
 program
   .version(settings.version)
@@ -14,7 +17,7 @@ program
   .option('-n, --nofile', "Don't update file; display results on stdout.")
   .option('-m, --md5', "Use MD5 encryption for passwords. This is the default.")
 
-if require('os').platform() != 'win32' # DOES NOT WORK ON WINDOWS
+if utils.isCryptInstalled() # Only if crypt is installed.
   program
     .option('-d, --crypt', "Use crypt() encryption for passwords. This algorithm limits the password length to 8 characters. This algorithm is insecure by today's standards.")
 

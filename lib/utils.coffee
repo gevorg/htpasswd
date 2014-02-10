@@ -1,17 +1,25 @@
 # Importing crypto module.
 crypto = require 'crypto'
 
-if require('os').platform() != 'win32'
-  # Importing apache-crypt module.
-  crypt3 = require 'apache-crypt'
-else
-  crypt3 = () ->
-
 # Importing apache-md5 module.
 md5 = require 'apache-md5'
 
 #  Module for utility functionalities.
 module.exports =
+
+  # Check if crypt is available.
+  isCryptInstalled: () ->
+    try
+      not not require.resolve 'apache-crypt'
+    catch
+      false
+
+  # Crypt method.
+  crypt3: (password, hash) ->
+    if module.exports.isCryptInstalled()
+      (require 'apache-crypt')(password, hash)
+    else
+      console.warn "[apache-crypt] IS NOT INSTALLED!"
 
   # Generates sha1 hash of password.
   sha1: (password) ->
@@ -27,7 +35,7 @@ module.exports =
     else if (hash.substr 0, 6) is '$apr1$'
       hash is md5(password, hash)
     else
-      (hash is password) or ((crypt3 password, hash) is hash)
+      (hash is password) or ((module.exports.crypt3 password, hash) is hash)
 
   # Encodes password hash for output.
   encode: (program) ->
@@ -37,7 +45,7 @@ module.exports =
       # Encode.
       if not program.plaintext
         if program.crypt
-          password = crypt3 password
+          password = (module.exports.crypt3 password)
         else if program.sha
           password = '{SHA}' + module.exports.sha1 password
         else

@@ -1,9 +1,6 @@
 # Importing module.
 utils = require '../lib/utils'
 
-# Importing apache-crypt module.
-crypt3 = require 'apache-crypt'
-
 # Importing apache-md5 module.
 md5 = require 'apache-md5'
 
@@ -33,8 +30,10 @@ module.exports =
 
   # Test for crypt3 option.
   testEncodeCrypt3: (test) ->
-    encoded = utils.encode {'crypt': true, 'args': ["olga", "chexova111"]}
-    test.equal (crypt3 "chexova111", encoded), encoded, "Password is wrong!"
+    if utils.isCryptInstalled()
+      encoded = utils.encode {'crypt': true, 'args': ["olga", "chexova111"]}
+      test.equal (utils.crypt3 "chexova111", encoded), encoded, "Password is wrong!"
+
     test.done()
 
   # Test for MD5 option.
@@ -65,7 +64,9 @@ module.exports =
 
   # Test for verify with correct crypt pass.
   testVerifyCryptOk: (test) ->
-    test.ok utils.verify "hVmhA.naUQQ3I", "raya"
+    if utils.isCryptInstalled()
+      test.ok utils.verify "hVmhA.naUQQ3I", "raya"
+
     test.done()
 
   # Test for verify with wrong crypt pass.
