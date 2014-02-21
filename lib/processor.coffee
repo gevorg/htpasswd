@@ -35,11 +35,11 @@ module.exports =
     
     # Try to read password.
     prompt.get options, (err, result) ->
-      if result.password is result.rePassword
+      if not err and result.password is result.rePassword
         program.args.push result.password
         module.exports.finalize program
       else
-        console.error "Password verification error."
+        console.error "\nPassword verification error."
 
   # Read password from stdin.
   readPasswordStdIn: (program) ->
