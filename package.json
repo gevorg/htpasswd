@@ -34,7 +34,7 @@
 		"prompt": "0.2.11"
 	},
     "optionalDependencies": {
-        "apache-crypt": "1.0.6"
+        "apache-crypt": "1.0.7"
     },
 	"devDependencies": {
 		"nodeunit": "0.9.0"
