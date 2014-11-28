@@ -33,7 +33,7 @@ $ htpasswd -nb[mps] username password
  - `-c` - Create a new file.
  - `-n` - Don't update file; display results on stdout.
  - `-m` - Use MD5 encryption for passwords. This is the default.
- - `-d` - Use crypt() encryption for passwords. This algorithm limits the password length to 8 characters. This algorithm is insecure by today's standards. (DOES NOT WORK ON WINDOWS)
+ - `-d` - Use crypt() encryption for passwords. This algorithm limits the password length to 8 characters. This algorithm is insecure by today's standards.
  - `-s` - Use SHA encryption for passwords. This algorithm is insecure by today's standards.
  - `-p` - Do not encrypt the password (plaintext).
  - `-D` - Delete the specified user.
