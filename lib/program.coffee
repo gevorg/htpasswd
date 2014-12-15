@@ -16,10 +16,7 @@ program
   .option('-c, --create', "Create a new file.")
   .option('-n, --nofile', "Don't update file; display results on stdout.")
   .option('-m, --md5', "Use MD5 encryption for passwords. This is the default.")
-
-if utils.isCryptInstalled() # Only if crypt is installed.
-  program
-    .option('-d, --crypt', "Use crypt() encryption for passwords. This algorithm limits the password length to 8 characters. This algorithm is insecure by today's standards.")
+  .option('-d, --crypt', "Use crypt() encryption for passwords. This algorithm limits the password length to 8 characters. This algorithm is insecure by today's standards.")
 
 program
   .option('-s, --sha', "Use SHA encryption for passwords. This algorithm is insecure by today's standards.")

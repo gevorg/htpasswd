@@ -30,9 +30,8 @@ module.exports =
 
   # Test for crypt3 option.
   testEncodeCrypt3: (test) ->
-    if utils.isCryptInstalled()
-      encoded = utils.encode {'crypt': true, 'args': ["olga", "chexova111"]}
-      test.equal (utils.crypt3 "chexova111", encoded), encoded, "Password is wrong!"
+    encoded = utils.encode {'crypt': true, 'args': ["olga", "chexova111"]}
+    test.equal (utils.crypt3 "chexova111", encoded), encoded, "Password is wrong!"
 
     test.done()
 
@@ -64,9 +63,7 @@ module.exports =
 
   # Test for verify with correct crypt pass.
   testVerifyCryptOk: (test) ->
-    if utils.isCryptInstalled()
-      test.ok utils.verify "hVmhA.naUQQ3I", "raya"
-
+    test.ok utils.verify "hVmhA.naUQQ3I", "raya"
     test.done()
 
   # Test for verify with wrong crypt pass.

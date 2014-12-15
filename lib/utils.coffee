@@ -4,22 +4,15 @@ crypto = require 'crypto'
 # Importing apache-md5 module.
 md5 = require 'apache-md5'
 
+# Importing apache-crypt module.
+crypt = require 'apache-crypt'
+
 #  Module for utility functionalities.
 module.exports =
 
-  # Check if crypt is available.
-  isCryptInstalled: () ->
-    try
-      not not require.resolve 'apache-crypt'
-    catch
-      false
-
   # Crypt method.
   crypt3: (password, hash) ->
-    if module.exports.isCryptInstalled()
-      (require 'apache-crypt')(password, hash)
-    else
-      console.warn "[apache-crypt] IS NOT INSTALLED!"
+    crypt password, hash
 
   # Generates sha1 hash of password.
   sha1: (password) ->
