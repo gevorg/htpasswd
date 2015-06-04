@@ -1,5 +1,5 @@
 # Exporting execution part.
-if PROGRAM_MODE
+if typeof htpasswd_is_program
   # Parses and processes command line arguments.
   program = require './program'
   processor = require './processor'
