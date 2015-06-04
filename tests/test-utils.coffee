@@ -1,5 +1,5 @@
 # Importing module.
-utils = require '../lib/utils'
+utils = require '../gensrc/utils'
 
 # Importing apache-md5 module.
 md5 = require 'apache-md5'

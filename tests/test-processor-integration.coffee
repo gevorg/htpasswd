@@ -1,5 +1,5 @@
 # Importing module.
-processor = require '../lib/processor'
+processor = require '../gensrc/processor'
 
 # FS module.
 fs = require 'fs'

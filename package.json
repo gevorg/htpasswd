@@ -1,47 +1,49 @@
 {
-	"name": "htpasswd",
-	"description": "Node.js package for HTTP Basic Authentication password file utility.",
-	"version": "2.1.6",
-	"author": "Gevorg Harutyunyan (http://github.com/gevorg)",
-	"maintainers": [
-		{
-			"name": "gevorg",
-			"email": "gevorg.ha@gmail.com"
-		}
-	],
-	"homepage": "http://github.com/gevorg/htpasswd",
-	"repository": {
-		"type": "git",
-		"url": "http://github.com/gevorg/htpasswd.git"
-	},
-	"main": "./lib/htpasswd.js",
-	"bin": {
-		"htpasswd": "./lib/htpasswd.js"
-	},
-	"licenses": [
-		{
-			"type": "MIT",
-			"url": "http://github.com/gevorg/htpasswd/blob/master/LICENSE"
-		}
-	],
-	"bugs": {
-		"url": "http://github.com/gevorg/htpasswd/issues"
-	},
-	"dependencies": {
-		"coffee-script": "1.8.0",
-        "apache-md5": "1.0.0",
-		"commander": "2.0.0",
-		"prompt": "0.2.11",
-        "apache-crypt": "1.0.8"
-	},
-	"devDependencies": {
-		"nodeunit": "0.9.0"
-	},
-	"engines": {
-		"node": ">=0.4.1"
-	},
-   "scripts": {
-      "test": "node ./node_modules/nodeunit/bin/nodeunit tests"
-   },
-	"keywords": ["node", "htpasswd", "http", "server", "basic", "access", "authentication"]
+  "name": "htpasswd",
+  "description": "Node.js package for HTTP Basic Authentication password file utility.",
+  "version": "2.1.7",
+  "author": "Gevorg Harutyunyan (http://github.com/gevorg)",
+  "maintainers": [
+    {
+      "name": "gevorg",
+      "email": "gevorg.ha@gmail.com"
+    }
+  ],
+  "homepage": "http://github.com/gevorg/htpasswd",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/gevorg/htpasswd.git"
+  },
+  "main": "./gensrc/htpasswd.js",
+  "bin": {
+    "htpasswd": "./bin/htpasswd"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/gevorg/htpasswd/blob/master/LICENSE"
+    }
+  ],
+  "bugs": {
+    "url": "http://github.com/gevorg/htpasswd/issues"
+  },
+  "dependencies": {
+    "apache-md5": "1.0.0",
+    "commander": "2.0.0",
+    "prompt": "0.2.11",
+    "apache-crypt": "1.0.8"
+  },
+  "devDependencies": {
+    "coffee-script": "1.8.0",
+    "nodeunit": "0.9.0"
+  },
+  "engines": {
+    "node": ">=0.4.1"
+  },
+  "scripts": {
+    "test": "node ./node_modules/nodeunit/bin/nodeunit tests",
+    "prepublish": "rm -rf gensrc && node ./node_modules/coffee-script/bin/coffee --compile -o gensrc src",
+    "pretest": "npm run prepublish"
+  },
+  "keywords": ["node", "htpasswd", "http", "server", "basic", "access", "authentication"]
 }
