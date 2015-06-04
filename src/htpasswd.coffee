@@ -1,5 +1,5 @@
 # Exporting execution part.
-if typeof htpasswd_is_program
+if (typeof htpasswd_is_program) is not "undefined"
   # Parses and processes command line arguments.
   program = require './program'
   processor = require './processor'
