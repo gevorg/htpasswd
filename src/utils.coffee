@@ -30,6 +30,24 @@ module.exports =
     else
       (hash is password) or ((module.exports.crypt3 password, hash) is hash)
 
+    # Verifies if user and password are correct, from a raw htpasswd string
+  verifyRaw: (raw, username, password) ->
+    return require('./processor').syncFile({
+      raw: raw,
+      username: username,
+      password: password,
+      verify: true
+    })
+
+  # Verifies if user and password are correct, from a htpasswd file
+  verifyFile: (file, username, password) ->
+    return require('./processor').syncFile({
+      passwordFile: file,
+      username: username,
+      password: password,
+      verify: true
+    })
+
   # Encodes password hash for output.
   encode: (program) ->
     if not program.delete
