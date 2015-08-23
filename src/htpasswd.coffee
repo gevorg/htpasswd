@@ -8,3 +8,5 @@ if (typeof htpasswd_is_program) != "undefined"
 else
   # Exporting verify method.
   module.exports.verify = require('./utils').verify
+  module.exports.verifyRaw = require('./utils').verifyRaw
+  module.exports.verifyFile = require('./utils').verifyFile
