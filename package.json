@@ -9,10 +9,10 @@
       "email": "gevorg.ha@gmail.com"
     }
   ],
-  "homepage": "http://github.com/gevorg/htpasswd",
+  "homepage": "http://github.com/http-auth/htpasswd",
   "repository": {
     "type": "git",
-    "url": "http://github.com/gevorg/htpasswd.git"
+    "url": "http://github.com/http-auth/htpasswd.git"
   },
   "main": "./gensrc/htpasswd.js",
   "bin": {
@@ -21,11 +21,11 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "http://github.com/gevorg/htpasswd/blob/master/LICENSE"
+      "url": "http://github.com/http-auth/htpasswd/blob/master/LICENSE"
     }
   ],
   "bugs": {
-    "url": "http://github.com/gevorg/htpasswd/issues"
+    "url": "http://github.com/http-auth/htpasswd/issues"
   },
   "dependencies": {
     "apache-md5": "1.0.0",
