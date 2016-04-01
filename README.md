@@ -1,15 +1,15 @@
 # htpasswd
 [Node.js](http://nodejs.org/) package for HTTP Basic Authentication password file utility.
 
-[![Build Status](https://api.travis-ci.org/gevorg/htpasswd.png)](https://travis-ci.org/gevorg/htpasswd)
-[![Dependency Status](https://david-dm.org/gevorg/htpasswd.png)](https://david-dm.org/gevorg/htpasswd)
+[![Build Status](https://api.travis-ci.org/http-auth/htpasswd.png)](https://travis-ci.org/http-auth/htpasswd)
+[![Dependency Status](https://david-dm.org/http-auth/htpasswd.png)](https://david-dm.org/http-auth/htpasswd)
 
 ## Installation
 
 Via git (or downloaded tarball):
 
 ```bash
-$ git clone git://github.com/gevorg/htpasswd.git
+$ git clone git://github.com/http-auth/htpasswd.git
 ```
 Via [npm](http://npmjs.org/):
 
@@ -49,7 +49,7 @@ $ npm test
 
 ## Issues
 
-You can find list of issues using **[this link](http://github.com/gevorg/htpasswd/issues)**.
+You can find list of issues using **[this link](http://github.com/http-auth/htpasswd/issues)**.
 
 ## Requirements
 
@@ -61,8 +61,8 @@ You can find list of issues using **[this link](http://github.com/gevorg/htpassw
  - **[commander](https://github.com/visionmedia/commander.js/)** - node.js command-line interfaces made easy.
  - **[coffee-script](http://coffeescript.org/)** - CoffeeScript is a little language that compiles into JavaScript.
  - **[prompt](https://github.com/flatiron/prompt)** - a beautiful command-line prompt for node.js.
- - **[apache-md5](https://github.com/gevorg/apache-md5)** - Node.js module for Apache style password encryption using md5.
- - **[apache-crypt](https://github.com/gevorg/apache-crypt)** - Node.js module for Apache style password encryption using crypt(3).
+ - **[apache-md5](https://github.com/http-auth/apache-md5)** - Node.js module for Apache style password encryption using md5.
+ - **[apache-crypt](https://github.com/http-auth/apache-crypt)** - Node.js module for Apache style password encryption using crypt(3).
 
 ## Development dependencies
 
