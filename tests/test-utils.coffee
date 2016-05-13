@@ -80,3 +80,13 @@ module.exports =
   testVerifyMD5Failed: (test) ->
     test.ok not utils.verify "$apr1$Ny3hkBdz$UReNPq7yEH6Y/D/FXUPwI/", "leo"
     test.done()
+
+  # Test for verify with correct short MD5 pass.
+  testVerifyShortMD5Ok: (test) ->
+    test.ok utils.verify "$1$Ny3hkBdz$BpVVFK6YBnrFYJtmeyrrH0", "mia"
+    test.done()
+
+  # Test for verify with wrong short MD5 pass.
+  testVerifyShortMD5Failed: (test) ->
+    test.ok not utils.verify "$1$Ny3hkBdz$UReNPq7yEH6Y/D/FXUPwI/", "leo"
+    test.done()
