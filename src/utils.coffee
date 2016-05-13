@@ -25,7 +25,7 @@ module.exports =
     if (hash.substr 0, 5) is '{SHA}'
       hash = hash.substr 5
       hash is module.exports.sha1 password
-    else if (hash.substr 0, 6) is '$apr1$'
+    else if (hash.substr 0, 6) is '$apr1$' or (hash.substr 0, 3) is '$1$'
       hash is md5(password, hash)
     else
       (hash is password) or ((module.exports.crypt3 password, hash) is hash)
