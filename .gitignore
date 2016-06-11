@@ -1,6 +1,6 @@
 node_modules
 .project
-htpasswd.iml
 .idea
+htpasswd.iml
 .settings
 gensrc
