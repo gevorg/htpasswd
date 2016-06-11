@@ -32,7 +32,7 @@ describe('utils', function () {
             let encoded = utils.encode({'delete': true});
 
             // Expectation.
-            expect(encoded).to.undefined;
+            expect(encoded).to.be.undefined;
         });
 
         it('plain option', function () {
@@ -75,7 +75,7 @@ describe('utils', function () {
             let result = utils.verify("plainPassword", "plainPassword");
 
             // Expectation.
-            expect(result).to.true;
+            expect(result).to.be.true;
         });
 
         it('wrong plain pass', function () {
@@ -83,7 +83,7 @@ describe('utils', function () {
             let result = utils.verify("plainWrongPassword", "plainPassword");
 
             // Expectation.
-            expect(result).to.false;
+            expect(result).to.be.false;
         });
 
         it('correct sha1 pass', function () {
@@ -91,7 +91,7 @@ describe('utils', function () {
             let result = utils.verify("{SHA}hGJRiZy8gBpNMHvs1UOTqIrRU20=", "hanna");
 
             // Expectation.
-            expect(result).to.true;
+            expect(result).to.be.true;
         });
 
         it('wrong sha1 pass', function () {
@@ -99,7 +99,7 @@ describe('utils', function () {
             let result = utils.verify("{SHA}hGJRiZy8gBpNMHvs1UOTqIrRU20=", "bannana");
 
             // Expectation.
-            expect(result).to.false;
+            expect(result).to.be.false;
         });
 
         it('correct crypt pass', function () {
@@ -107,7 +107,7 @@ describe('utils', function () {
             let result = utils.verify("hVmhA.naUQQ3I", "raya");
 
             // Expectation.
-            expect(result).to.true;
+            expect(result).to.be.true;
         });
 
         it('wrong crypt pass', function () {
@@ -115,7 +115,7 @@ describe('utils', function () {
             let result = utils.verify("hVmhA.naUQQ3I", "serob");
 
             // Expectation.
-            expect(result).to.false;
+            expect(result).to.be.false;
         });
 
         it('correct MD5 pass', function () {
@@ -123,7 +123,7 @@ describe('utils', function () {
             let result = utils.verify("$apr1$Ny3hkBdz$UReNPq7yEH6Y/D/FXUPwI/", "mia");
 
             // Expectation.
-            expect(result).to.true;
+            expect(result).to.be.true;
         });
 
         it('wrong MD5 pass', function () {
@@ -131,7 +131,7 @@ describe('utils', function () {
             let result = utils.verify("$apr1$Ny3hkBdz$UReNPq7yEH6Y/D/FXUPwI/", "leo");
 
             // Expectation.
-            expect(result).to.false;
+            expect(result).to.be.false;
         });
 
         it('correct short MD5 pass', function () {
@@ -139,7 +139,7 @@ describe('utils', function () {
             let result = utils.verify("$1$Ny3hkBdz$BpVVFK6YBnrFYJtmeyrrH0", "mia");
 
             // Expectation.
-            expect(result).to.true;
+            expect(result).to.be.true;
         });
 
         it('wrong short MD5 pass', function () {
@@ -147,7 +147,7 @@ describe('utils', function () {
             let result = utils.verify("$1$Ny3hkBdz$UReNPq7yEH6Y/D/FXUPwI/", "leo");
 
             // Expectation.
-            expect(result).to.false;
+            expect(result).to.be.false;
         });
     });
 });

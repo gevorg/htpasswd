@@ -180,7 +180,7 @@ describe('processor', function () {
             let valid = processor.validate({'nofile': true, 'args': ["natalya"]});
 
             // Expectation.
-            expect(valid).to.true;
+            expect(valid).to.be.true;
         });
 
         it('username, password', function () {
@@ -188,7 +188,7 @@ describe('processor', function () {
             let valid = processor.validate({'nofile': true, 'batch': true, 'args': ["kiara", "superPass"]});
 
             // Expectation.
-            expect(valid).to.true;
+            expect(valid).to.be.true;
         });
 
         it('username, password, file', function () {
@@ -196,7 +196,7 @@ describe('processor', function () {
             let valid = processor.validate({'batch': true, 'args': ["pass.txt", "anna", "userPass"]});
 
             // Expectation.
-            expect(valid).to.true;
+            expect(valid).to.be.true;
         });
 
         it('missing password', function () {
@@ -204,7 +204,7 @@ describe('processor', function () {
             let valid = processor.validate({'batch': true, 'args': ["super.txt", "rita"]});
 
             // Expectation.
-            expect(valid).to.false;
+            expect(valid).to.be.false;
         });
 
         it('missing file', function () {
@@ -212,7 +212,7 @@ describe('processor', function () {
             let valid = processor.validate({'args': ["rita"]});
 
             // Expectation.
-            expect(valid).to.false;
+            expect(valid).to.be.false;
         });
     });
 });
