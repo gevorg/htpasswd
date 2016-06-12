@@ -45,8 +45,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register",
     "compile": "babel src -d gensrc",
-    "prepublish": "npm run compile",
-    "pretest": "npm run compile"
+    "prepublish": "npm run compile"
   },
   "keywords": ["htpasswd", "http", "basic", "access", "authentication"]
 }

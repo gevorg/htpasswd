@@ -1,10 +1,10 @@
 "use strict";
 
 // Expect module.
-import {expect} from 'chai';
+import {expect} from 'chai'
 
 // Source.
-import * as utils from '../gensrc/utils'
+import * as utils from '../src/utils'
 
 // Importing apache-md5 module.
 import md5 from 'apache-md5'

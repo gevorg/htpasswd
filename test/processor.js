@@ -4,10 +4,10 @@
 import fs from 'fs'
 
 // Expect module.
-import {expect} from 'chai';
+import {expect} from 'chai'
 
 // Source.
-import * as processor from '../gensrc/processor'
+import * as processor from '../src/processor'
 
 // Processor.
 describe('processor', function () {
