@@ -6,3 +6,4 @@ htpasswd.iml
 .settings
 src
 test
+.travis.yml
