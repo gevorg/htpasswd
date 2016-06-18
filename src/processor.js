@@ -28,12 +28,12 @@ export function validate(program) {
 
 // Sync file with new data.
 export function syncFile(program) {
-    let passwordFile = program.args[0];
-    let username = program.args[1];
-    let password = program.args[2];
+    const passwordFile = program.args[0];
+    const username = program.args[1];
+    const password = program.args[2];
 
     // Hash encode.
-    let hash = utils.encode(program);
+    const hash = utils.encode(program);
 
     // Collector params.
     let found = false;
@@ -45,7 +45,7 @@ export function syncFile(program) {
             return;
         }
 
-        let lines = fs.readFileSync(passwordFile, 'UTF-8').split("\n");
+        const lines = fs.readFileSync(passwordFile, 'UTF-8').split("\n");
 
         // Loop lines.
         lines.forEach(line => {
@@ -91,8 +91,8 @@ export function syncFile(program) {
 // Finalizes processing by printing output or changing password file.
 function finalize(program) {
     if (program.nofile) {
-        let username = program.args[0];
-        let hash = utils.encode(program);
+        const username = program.args[0];
+        const hash = utils.encode(program);
 
         // Print to stdout.
         console.log(`${username}:${hash}`);
@@ -127,13 +127,13 @@ function readPassword(program) {
     prompt.message = "";
     prompt.delimiter = "";
 
-    let passportOption = [{name: 'password', description: 'New password:', hidden: true}];
-    let rePassportOption = [{name: 'rePassword', description: 'Re-type new password:', hidden: true}];
+    const passportOption = [{name: 'password', description: 'New password:', hidden: true}];
+    const rePassportOption = [{name: 'rePassword', description: 'Re-type new password:', hidden: true}];
 
     // Try to read password.
     prompt.get(passportOption, function (err, result) {
         if (!err) {
-            let password = result.password;
+            const password = result.password;
             setTimeout(function () {
                 prompt.get(rePassportOption, function (err, result) {
                     if (!err && password == result.rePassword) {
