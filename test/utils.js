@@ -18,7 +18,7 @@ describe('utils', function () {
     describe('#sha1', function () {
         it('hash should be correct', function () {
             // Source.
-            let hash = utils.sha1("devochka");
+            const hash = utils.sha1("devochka");
 
             // Expectation.
             expect(hash).equal("deWaCTR7rOMysgZN3EgtgAaTzPs=");
@@ -29,7 +29,7 @@ describe('utils', function () {
     describe('#encode', function () {
         it('delete option', function () {
             // Source.
-            let encoded = utils.encode({'delete': true});
+            const encoded = utils.encode({'delete': true});
 
             // Expectation.
             expect(encoded).to.be.undefined;
@@ -37,7 +37,7 @@ describe('utils', function () {
 
         it('plain option', function () {
             // Source.
-            let encoded = utils.encode({'plaintext': true, 'args': ["olga", "chexova111"]});
+            const encoded = utils.encode({'plaintext': true, 'args': ["olga", "chexova111"]});
 
             // Expectation.
             expect(encoded).to.equal("chexova111");
@@ -45,7 +45,7 @@ describe('utils', function () {
 
         it('sha1 option', function () {
             // Source.
-            let encoded = utils.encode({'sha': true, 'args': ["olga", "chexova111"]});
+            const encoded = utils.encode({'sha': true, 'args': ["olga", "chexova111"]});
 
             // Expectation.
             expect(encoded).to.equal("{SHA}Iv8c5zqtbvxiwFTxcEI6CteSx48=");
@@ -53,7 +53,7 @@ describe('utils', function () {
 
         it('crypt option', function () {
             // Source.
-            let encoded = utils.encode({'crypt': true, 'args': ["olga", "chexova111"]});
+            const encoded = utils.encode({'crypt': true, 'args': ["olga", "chexova111"]});
 
             // Expectation.
             expect(encoded).to.equal(crypt("chexova111", encoded));
@@ -61,7 +61,7 @@ describe('utils', function () {
 
         it('md5 option', function () {
             // Source.
-            let encoded = utils.encode({'args': ["kia", "siara"]});
+            const encoded = utils.encode({'args': ["kia", "siara"]});
 
             // Expectation.
             expect(encoded).to.equal(md5("siara", encoded));
@@ -72,7 +72,7 @@ describe('utils', function () {
     describe('#verify', function () {
         it('correct plain pass', function () {
             // Source.
-            let result = utils.verify("plainPassword", "plainPassword");
+            const result = utils.verify("plainPassword", "plainPassword");
 
             // Expectation.
             expect(result).to.be.true;
@@ -80,7 +80,7 @@ describe('utils', function () {
 
         it('wrong plain pass', function () {
             // Source.
-            let result = utils.verify("plainWrongPassword", "plainPassword");
+            const result = utils.verify("plainWrongPassword", "plainPassword");
 
             // Expectation.
             expect(result).to.be.false;
@@ -88,7 +88,7 @@ describe('utils', function () {
 
         it('correct sha1 pass', function () {
             // Source.
-            let result = utils.verify("{SHA}hGJRiZy8gBpNMHvs1UOTqIrRU20=", "hanna");
+            const result = utils.verify("{SHA}hGJRiZy8gBpNMHvs1UOTqIrRU20=", "hanna");
 
             // Expectation.
             expect(result).to.be.true;
@@ -96,7 +96,7 @@ describe('utils', function () {
 
         it('wrong sha1 pass', function () {
             // Source.
-            let result = utils.verify("{SHA}hGJRiZy8gBpNMHvs1UOTqIrRU20=", "bannana");
+            const result = utils.verify("{SHA}hGJRiZy8gBpNMHvs1UOTqIrRU20=", "bannana");
 
             // Expectation.
             expect(result).to.be.false;
@@ -104,7 +104,7 @@ describe('utils', function () {
 
         it('correct crypt pass', function () {
             // Source.
-            let result = utils.verify("hVmhA.naUQQ3I", "raya");
+            const result = utils.verify("hVmhA.naUQQ3I", "raya");
 
             // Expectation.
             expect(result).to.be.true;
@@ -112,7 +112,7 @@ describe('utils', function () {
 
         it('wrong crypt pass', function () {
             // Source.
-            let result = utils.verify("hVmhA.naUQQ3I", "serob");
+            const result = utils.verify("hVmhA.naUQQ3I", "serob");
 
             // Expectation.
             expect(result).to.be.false;
@@ -120,7 +120,7 @@ describe('utils', function () {
 
         it('correct MD5 pass', function () {
             // Source.
-            let result = utils.verify("$apr1$Ny3hkBdz$UReNPq7yEH6Y/D/FXUPwI/", "mia");
+            const result = utils.verify("$apr1$Ny3hkBdz$UReNPq7yEH6Y/D/FXUPwI/", "mia");
 
             // Expectation.
             expect(result).to.be.true;
@@ -128,7 +128,7 @@ describe('utils', function () {
 
         it('wrong MD5 pass', function () {
             // Source.
-            let result = utils.verify("$apr1$Ny3hkBdz$UReNPq7yEH6Y/D/FXUPwI/", "leo");
+            const result = utils.verify("$apr1$Ny3hkBdz$UReNPq7yEH6Y/D/FXUPwI/", "leo");
 
             // Expectation.
             expect(result).to.be.false;
@@ -136,7 +136,7 @@ describe('utils', function () {
 
         it('correct short MD5 pass', function () {
             // Source.
-            let result = utils.verify("$1$Ny3hkBdz$BpVVFK6YBnrFYJtmeyrrH0", "mia");
+            const result = utils.verify("$1$Ny3hkBdz$BpVVFK6YBnrFYJtmeyrrH0", "mia");
 
             // Expectation.
             expect(result).to.be.true;
@@ -144,7 +144,7 @@ describe('utils', function () {
 
         it('wrong short MD5 pass', function () {
             // Source.
-            let result = utils.verify("$1$Ny3hkBdz$UReNPq7yEH6Y/D/FXUPwI/", "leo");
+            const result = utils.verify("$1$Ny3hkBdz$UReNPq7yEH6Y/D/FXUPwI/", "leo");
 
             // Expectation.
             expect(result).to.be.false;
