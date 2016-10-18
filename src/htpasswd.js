@@ -1,11 +1,11 @@
 'use strict';
 
 // Importing modules.
-import program from 'commander'
-import * as processor from './processor'
+const program = require('commander');
+const processor = require('./processor');
 
 // Parses and processes command line arguments.
-export default function(version, args) {
+module.exports = (version, args) => {
   // Setup.
   program
       .version(version)
@@ -22,7 +22,7 @@ export default function(version, args) {
       .option('-v, --verify', "Verify password. Verify that the given password matches the password of the user stored in the specified htpasswd file.");
   
   // Help option.
-  program.on('--help', function () {
+  program.on('--help', () => {
     console.log(` 
         Examples: 
           
@@ -40,4 +40,4 @@ export default function(version, args) {
 
   // Process program output.
   processor.exec(program);
-}
+};

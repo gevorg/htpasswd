@@ -1,16 +1,19 @@
 "use strict";
 
 // Utils.
-import * as utils from './utils'
+const utils = require('./utils');
 
 // FS.
-import fs from 'fs'
+const fs = require('fs');
 
 // Prompt module.
-import prompt from 'prompt'
+const prompt = require('prompt');
+
+// Export object.
+const processor = {};
 
 // Validates input arguments.
-export function validate(program) {
+processor.validate = (program) => {
     // Only username is required.
     let expectedArgs = 1;
 
@@ -24,10 +27,10 @@ export function validate(program) {
 
     // Validate argument count.
     return program.args.length === expectedArgs;
-}
+};
 
 // Sync file with new data.
-export function syncFile(program) {
+processor.syncFile = (program) => {
     const passwordFile = program.args[0];
     const username = program.args[1];
     const password = program.args[2];
@@ -86,10 +89,10 @@ export function syncFile(program) {
         // Write data.
         fs.writeFileSync(passwordFile, newLines.join("\n") + "\n", 'UTF-8');
     }
-}
+};
 
 // Finalizes processing by printing output or changing password file.
-function finalize(program) {
+processor.finalize = (program) => {
     if (program.nofile) {
         const username = program.args[0];
         const hash = utils.encode(program);
@@ -98,12 +101,12 @@ function finalize(program) {
         console.log(`${username}:${hash}`);
     } else {
         try {
-            syncFile(program);
+            processor.syncFile(program);
         } catch (err) {
             console.error(err.message);
         }
     }
-}
+};
 
 // Read password from stdin.
 function readPasswordStdIn(program) {
@@ -117,7 +120,7 @@ function readPasswordStdIn(program) {
     // Finished reading.
     process.stdin.on('end', function () {
         program.args.push(password);
-        finalize(program);
+        processor.finalize(program);
     });
 }
 
@@ -138,7 +141,7 @@ function readPassword(program) {
                 prompt.get(rePassportOption, function (err, result) {
                     if (!err && password == result.rePassword) {
                         program.args.push(password);
-                        finalize(program);
+                        processor.finalize(program);
                     } else {
                         console.error("\nPassword verification error.");
                     }
@@ -151,16 +154,19 @@ function readPassword(program) {
 }
 
 // Processing command.
-export function exec(program) {
-    if (validate(program)) {
+processor.exec = (program) => {
+    if (processor.validate(program)) {
         if (program.stdin) {
             readPasswordStdIn(program);
         } else if (!program.batch && !program.delete) {
             readPassword(program);
         } else {
-            finalize(program);
+            processor.finalize(program);
         }
     } else {
         program.help();
     }
-}
+};
+
+// Export processor.
+module.exports = processor;

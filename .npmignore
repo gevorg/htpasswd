@@ -4,6 +4,5 @@ node_modules
 .idea
 htpasswd.iml
 .settings
-src
 test
 .travis.yml

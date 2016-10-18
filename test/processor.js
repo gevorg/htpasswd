@@ -1,32 +1,32 @@
 "use strict";
 
 // FS.
-import fs from 'fs'
+const fs = require('fs');
 
 // Expect module.
-import {expect} from 'chai'
+const expect = require('chai').expect;
 
 // Source.
-import * as processor from '../src/processor'
+const processor = require('../src/processor');
 
 // Processor.
-describe('processor', function () {
+describe('processor', () => {
     // Tests for exec.
-    describe('#exec', function () {
-        afterEach(function () {
+    describe('#exec', () => {
+        afterEach(() => {
             if (fs.existsSync("password.txt")) {
                 fs.unlinkSync("password.txt");
             }
         });
 
-        it('console output', function (done) {
+        it('console output', (done) => {
             const program = {
                 'batch': true, 'nofile': true, 'sha': true,
                 'args': ["mary", "pass12"]
             };
 
             const preservedLog = console.log;
-            console.log = function() {
+            console.log = function () {
                 console.log = preservedLog;
                 console.log.apply(console, arguments);
 
@@ -38,7 +38,7 @@ describe('processor', function () {
             processor.exec(program);
         });
 
-        it('successful password verification', function (done) {
+        it('successful password verification', (done) => {
             fs.writeFileSync("password.txt", "detka:milaya\n", 'UTF-8');
             const program = {
                 'batch': true, 'verify': true, plain: true,
@@ -46,7 +46,7 @@ describe('processor', function () {
             };
 
             const preservedLog = console.log;
-            console.log = function() {
+            console.log = function () {
                 console.log = preservedLog;
                 console.log.apply(console, arguments);
 
@@ -58,7 +58,7 @@ describe('processor', function () {
             processor.exec(program);
         });
 
-        it('failed password verification', function (done) {
+        it('failed password verification', (done) => {
             fs.writeFileSync("password.txt", "detka:nemilaya\n", 'UTF-8');
             const program = {
                 'batch': true, 'verify': true, plain: true,
@@ -66,7 +66,7 @@ describe('processor', function () {
             };
 
             const preservedLog = console.log;
-            console.log = function() {
+            console.log = function () {
                 console.log = preservedLog;
                 console.log.apply(console, arguments);
 
@@ -78,7 +78,7 @@ describe('processor', function () {
             processor.exec(program);
         });
 
-        it('file create', function () {
+        it('file create', () => {
             const program = {
                 'batch': true, 'sha': true, 'create': true,
                 'args': ["password.txt", "gevorg", "sho"]
@@ -91,7 +91,7 @@ describe('processor', function () {
             expect(fileData).to.equal("gevorg:{SHA}NSjjR5VzkksaQNgdEKs0MqPtStI=\n");
         });
 
-        it('file update', function () {
+        it('file update', () => {
             fs.writeFileSync("password.txt", "mihrdat:{SHA}NSjjR5VzkksaQNgdEKs0MqPtStI=\n", 'UTF-8');
             const program = {
                 'batch': true, 'sha': true,
@@ -105,7 +105,7 @@ describe('processor', function () {
             expect(fileData).to.equal("mihrdat:{SHA}SBkC7BTq8/z+xr6CvWpjuXKsUX8=\n");
         });
 
-        it('file delete', function () {
+        it('file delete', () => {
             fs.writeFileSync("password.txt", "urmia:{SHA}NSjjR5VzkksaQNgdEKs0MqPtStI=\n", 'UTF-8');
             const program = {'delete': true, 'args': ["password.txt", "urmia"]};
 
@@ -116,12 +116,12 @@ describe('processor', function () {
             expect(fileData).to.equal("\n");
         });
 
-        it('file delete not existing', function (done) {
+        it('file delete not existing', (done) => {
             fs.writeFileSync("password.txt", "urmia:{SHA}NSjjR5VzkksaQNgdEKs0MqPtStI=\n", 'UTF-8');
             const program = {'delete': true, 'args': ["password.txt", "sonya"]};
 
             const preservedLog = console.log;
-            console.error = function() {
+            console.error = function () {
                 console.error = preservedLog;
                 console.error.apply(console, arguments);
 
@@ -133,7 +133,7 @@ describe('processor', function () {
             processor.exec(program);
         });
 
-        it('file add', function () {
+        it('file add', () => {
             const initData = "mihrdat:{SHA}NSjjR5VzkksaQNgdEKs0MqPtStI=\n";
             fs.writeFileSync("password.txt", initData, 'UTF-8');
 
@@ -149,14 +149,14 @@ describe('processor', function () {
             expect(fileData).to.equal(`${initData}tigran:{SHA}1cYTTawbHcKifj2Yn6MC8bDq7Dc=\n`);
         });
 
-        it('file add, not existing', function (done) {
+        it('file add, not existing', (done) => {
             const program = {
                 'batch': true,
                 'args': ["password.txt", "tigran", "thegreat"]
             };
 
             const preservedLog = console.log;
-            console.error = function() {
+            console.error = function () {
                 console.error = preservedLog;
                 console.error.apply(console, arguments);
 
@@ -168,7 +168,7 @@ describe('processor', function () {
             processor.exec(program);
         });
 
-        it('help', function (done) {
+        it('help', (done) => {
             const program = {'args': ["klara"], 'help': function() {
                 done();
             }};
@@ -179,8 +179,8 @@ describe('processor', function () {
     });
 
     // Tests for validate.
-    describe('#validate', function () {
-        it('username', function () {
+    describe('#validate', () => {
+        it('username', () => {
             // Source.
             const valid = processor.validate({'nofile': true, 'args': ["natalya"]});
 
@@ -188,7 +188,7 @@ describe('processor', function () {
             expect(valid).to.be.true;
         });
 
-        it('username, password', function () {
+        it('username, password', () => {
             // Source.
             const valid = processor.validate({'nofile': true, 'batch': true, 'args': ["kiara", "superPass"]});
 
@@ -196,7 +196,7 @@ describe('processor', function () {
             expect(valid).to.be.true;
         });
 
-        it('username, password, file', function () {
+        it('username, password, file', () => {
             // Source.
             const valid = processor.validate({'batch': true, 'args': ["pass.txt", "anna", "userPass"]});
 
@@ -204,7 +204,7 @@ describe('processor', function () {
             expect(valid).to.be.true;
         });
 
-        it('missing password', function () {
+        it('missing password', () => {
             // Source.
             const valid = processor.validate({'batch': true, 'args': ["super.txt", "rita"]});
 
@@ -212,7 +212,7 @@ describe('processor', function () {
             expect(valid).to.be.false;
         });
 
-        it('missing file', function () {
+        it('missing file', () => {
             // Source.
             const valid = processor.validate({'args': ["rita"]});
 

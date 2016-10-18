@@ -1,22 +1,22 @@
 "use strict";
 
 // Expect module.
-import {expect} from 'chai'
+const expect = require('chai').expect;
 
 // Source.
-import * as utils from '../src/utils'
+const utils = require('../src/utils');
 
 // Importing apache-md5 module.
-import md5 from 'apache-md5'
+const md5 = require('apache-md5');
 
 // Importing apache-crypt module.
-import crypt from 'apache-crypt'
+const crypt = require('apache-crypt');
 
 // Utils
-describe('utils', function () {
+describe('utils', () => {
     // Tests for sha1.
-    describe('#sha1', function () {
-        it('hash should be correct', function () {
+    describe('#sha1', () => {
+        it('hash should be correct', () => {
             // Source.
             const hash = utils.sha1("devochka");
 
@@ -26,8 +26,8 @@ describe('utils', function () {
     });
 
     // Tests for encode.
-    describe('#encode', function () {
-        it('delete option', function () {
+    describe('#encode', () => {
+        it('delete option', () => {
             // Source.
             const encoded = utils.encode({'delete': true});
 
@@ -35,7 +35,7 @@ describe('utils', function () {
             expect(encoded).to.be.undefined;
         });
 
-        it('plain option', function () {
+        it('plain option', () => {
             // Source.
             const encoded = utils.encode({'plaintext': true, 'args': ["olga", "chexova111"]});
 
@@ -43,7 +43,7 @@ describe('utils', function () {
             expect(encoded).to.equal("chexova111");
         });
 
-        it('sha1 option', function () {
+        it('sha1 option', () => {
             // Source.
             const encoded = utils.encode({'sha': true, 'args': ["olga", "chexova111"]});
 
@@ -51,7 +51,7 @@ describe('utils', function () {
             expect(encoded).to.equal("{SHA}Iv8c5zqtbvxiwFTxcEI6CteSx48=");
         });
 
-        it('crypt option', function () {
+        it('crypt option', () => {
             // Source.
             const encoded = utils.encode({'crypt': true, 'args': ["olga", "chexova111"]});
 
@@ -59,7 +59,7 @@ describe('utils', function () {
             expect(encoded).to.equal(crypt("chexova111", encoded));
         });
 
-        it('md5 option', function () {
+        it('md5 option', () => {
             // Source.
             const encoded = utils.encode({'args': ["kia", "siara"]});
 
@@ -69,7 +69,7 @@ describe('utils', function () {
     });
 
     // Tests for verify.
-    describe('#verify', function () {
+    describe('#verify', () => {
         it('correct plain pass', function () {
             // Source.
             const result = utils.verify("plainPassword", "plainPassword");
@@ -78,7 +78,7 @@ describe('utils', function () {
             expect(result).to.be.true;
         });
 
-        it('wrong plain pass', function () {
+        it('wrong plain pass', () => {
             // Source.
             const result = utils.verify("plainWrongPassword", "plainPassword");
 
@@ -86,7 +86,7 @@ describe('utils', function () {
             expect(result).to.be.false;
         });
 
-        it('correct sha1 pass', function () {
+        it('correct sha1 pass', () => {
             // Source.
             const result = utils.verify("{SHA}hGJRiZy8gBpNMHvs1UOTqIrRU20=", "hanna");
 
@@ -94,7 +94,7 @@ describe('utils', function () {
             expect(result).to.be.true;
         });
 
-        it('wrong sha1 pass', function () {
+        it('wrong sha1 pass', () => {
             // Source.
             const result = utils.verify("{SHA}hGJRiZy8gBpNMHvs1UOTqIrRU20=", "bannana");
 
@@ -102,7 +102,7 @@ describe('utils', function () {
             expect(result).to.be.false;
         });
 
-        it('correct crypt pass', function () {
+        it('correct crypt pass', () => {
             // Source.
             const result = utils.verify("hVmhA.naUQQ3I", "raya");
 
@@ -110,7 +110,7 @@ describe('utils', function () {
             expect(result).to.be.true;
         });
 
-        it('wrong crypt pass', function () {
+        it('wrong crypt pass', () => {
             // Source.
             const result = utils.verify("hVmhA.naUQQ3I", "serob");
 
@@ -118,7 +118,7 @@ describe('utils', function () {
             expect(result).to.be.false;
         });
 
-        it('correct MD5 pass', function () {
+        it('correct MD5 pass', () => {
             // Source.
             const result = utils.verify("$apr1$Ny3hkBdz$UReNPq7yEH6Y/D/FXUPwI/", "mia");
 
@@ -126,7 +126,7 @@ describe('utils', function () {
             expect(result).to.be.true;
         });
 
-        it('wrong MD5 pass', function () {
+        it('wrong MD5 pass', () => {
             // Source.
             const result = utils.verify("$apr1$Ny3hkBdz$UReNPq7yEH6Y/D/FXUPwI/", "leo");
 
@@ -134,7 +134,7 @@ describe('utils', function () {
             expect(result).to.be.false;
         });
 
-        it('correct short MD5 pass', function () {
+        it('correct short MD5 pass', () => {
             // Source.
             const result = utils.verify("$1$Ny3hkBdz$BpVVFK6YBnrFYJtmeyrrH0", "mia");
 
@@ -142,7 +142,7 @@ describe('utils', function () {
             expect(result).to.be.true;
         });
 
-        it('wrong short MD5 pass', function () {
+        it('wrong short MD5 pass', () => {
             // Source.
             const result = utils.verify("$1$Ny3hkBdz$UReNPq7yEH6Y/D/FXUPwI/", "leo");
 
