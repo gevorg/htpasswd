@@ -1,7 +1,7 @@
 {
   "name": "htpasswd",
   "description": "Node.js package for HTTP Basic Authentication password file utility.",
-  "version": "2.3.4",
+  "version": "2.4.0",
   "author": "Gevorg Harutyunyan (http://github.com/gevorg)",
   "maintainers": [
     {
@@ -31,7 +31,8 @@
     "apache-md5": "^1.0.6",
     "apache-crypt": "^1.1.2",
     "commander": "^2.9.0",
-    "prompt": "^1.0.0"
+    "prompt": "^1.0.0",
+    "bcryptjs": "^2.3.0"
   },
   "devDependencies": {
     "mocha": "^2.5.3",

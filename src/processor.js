@@ -25,6 +25,11 @@ processor.validate = (program) => {
         ++ expectedArgs;
     }
 
+    if (program.cost) {
+        program.cost = +program.args[0];
+        program.args = program.args.slice(1);
+    }
+
     // Validate argument count.
     return program.args.length === expectedArgs;
 };

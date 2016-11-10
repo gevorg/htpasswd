@@ -15,6 +15,8 @@ module.exports = (version, args) => {
       .option('-c, --create', "Create a new file.")
       .option('-n, --nofile', "Don't update file; display results on stdout.")
       .option('-m, --md5', "Use MD5 encryption for passwords. This is the default.")
+      .option('-B, --bcrypt', "Use bcrypt encryption for passwords. This is currently considered to be very secure.")
+      .option('-C, --cost', "This flag is only allowed in combination with -B (bcrypt encryption). It sets the computing time used for the bcrypt algorithm (higher is more secure but slower, default: 5, valid: 4 to 31).")
       .option('-d, --crypt', "Use crypt() encryption for passwords. This algorithm limits the password length to 8 characters. This algorithm is insecure by today's standards.")
       .option('-s, --sha', "Use SHA encryption for passwords. This algorithm is insecure by today's standards.")
       .option('-p, --plaintext', "Do not encrypt the password (plaintext).")
@@ -26,11 +28,11 @@ module.exports = (version, args) => {
     console.log(` 
         Examples: 
           
-          htpasswd [-cimpsDv] passwordfile username
-          htpasswd -b[cmpsDv] passwordfile username password
+          htpasswd [-cimBpsDv] [ -C cost ] passwordfile username
+          htpasswd -b[cmBpsDv] [ -C cost ] passwordfile username password
       
-          htpasswd -n[imps] username
-          htpasswd -nb[mps] username password            
+          htpasswd -n[imBps] [ -C cost ] username
+          htpasswd -nb[mBps] [ -C cost ] username password            
 
         `);
   });

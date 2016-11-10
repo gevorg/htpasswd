@@ -149,5 +149,29 @@ describe('utils', () => {
             // Expectation.
             expect(result).to.be.false;
         });
+
+        it('correct bcrypt pass', () => {
+            // Source.
+            const result = utils.verify("$2y$05$c4WoMPo3SXsafkva.HHa6uXQZWr7oboPiC2bT/r7q1BB8I2s0BRqC", "myPassword");
+
+            // Expectation.
+            expect(result).to.be.true;
+        });
+
+        it('correct old bcrypt pass', () => {
+            // Source.
+            const result = utils.verify("$2a$05$c4WoMPo3SXsafkva.HHa6uXQZWr7oboPiC2bT/r7q1BB8I2s0BRqC", "myPassword");
+
+            // Expectation.
+            expect(result).to.be.true;
+        });
+
+        it('wrong bcrypt pass', () => {
+            // Source.
+            const result = utils.verify("$2a$05$c4WoMPo3SXsafkva.HHa6uXQZWr7oboPiC2bT/r7q1BB8I2s0BRqC", "notMyPassword");
+
+            // Expectation.
+            expect(result).to.be.false;
+        });
     });
 });

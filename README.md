@@ -18,11 +18,11 @@ $ npm install -g htpasswd
 ## Usage
 
 ```bash
-$ htpasswd [-cimpsDv] passwordfile username
-$ htpasswd -b[cmpsDv] passwordfile username password
+$ htpasswd [-cimBpsDv] [ -C cost ] passwordfile username
+$ htpasswd -b[cmpsDv] [ -C cost ] passwordfile username password
 
-$ htpasswd -n[imps] username
-$ htpasswd -nb[mps] username password
+$ htpasswd -n[imBps] [ -C cost ] username
+$ htpasswd -nb[mBps] [ -C cost ] username password
 ```	
 
 ## Options
@@ -32,6 +32,8 @@ $ htpasswd -nb[mps] username password
  - `-c` - Create a new file.
  - `-n` - Don't update file; display results on stdout.
  - `-m` - Use MD5 encryption for passwords. This is the default.
+ - `-B` - Use bcrypt encryption for passwords. This is currently considered to be very secure.
+ - `-C` - This flag is only allowed in combination with -B (bcrypt encryption). It sets the computing time used for the bcrypt algorithm (higher is more secure but slower, default: 5, valid: 4 to 31).
  - `-d` - Use crypt() encryption for passwords. This algorithm limits the password length to 8 characters. This algorithm is insecure by today's standards.
  - `-s` - Use SHA encryption for passwords. This algorithm is insecure by today's standards.
  - `-p` - Do not encrypt the password (plaintext).
@@ -61,6 +63,7 @@ You can find list of issues using **[this link](http://github.com/http-auth/htpa
  - **[prompt](https://github.com/flatiron/prompt)** - a beautiful command-line prompt for node.js.
  - **[apache-md5](https://github.com/http-auth/apache-md5)** - Node.js module for Apache style password encryption using md5.
  - **[apache-crypt](https://github.com/http-auth/apache-crypt)** - Node.js module for Apache style password encryption using crypt(3).
+ - **[bcrypt.js](https://github.com/dcodeIO/bcrypt.js)** - Optimized bcrypt in plain JavaScript with zero dependencies.
 
 ## Development dependencies
 

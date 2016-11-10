@@ -219,5 +219,27 @@ describe('processor', () => {
             // Expectation.
             expect(valid).to.be.false;
         });
+
+        it('valid cost argument', () => {
+            let program = {'cost': true, 'batch': true, 'nofile': true, 'args': ["11", "valod", "ssss"]};
+
+            // Source.
+            const valid = processor.validate(program);
+
+            // Expectation.
+            expect(valid).to.be.true;
+            expect(program.cost).to.equal(11);
+            expect(program.args.length).to.equal(2);
+        });
+
+        it('invalid cost argument', () => {
+            let program = {'cost': false, 'batch': true, 'nofile': true, 'args': ["11", "valod", "ssss"]};
+
+            // Source.
+            const valid = processor.validate(program);
+
+            // Expectation.
+            expect(valid).to.be.false;
+        });
     });
 });
