@@ -19,7 +19,7 @@ $ npm install -g htpasswd
 
 ```bash
 $ htpasswd [-cimBpsDv] [ -C cost ] passwordfile username
-$ htpasswd -b[cmpsDv] [ -C cost ] passwordfile username password
+$ htpasswd -b[cmBpsDv] [ -C cost ] passwordfile username password
 
 $ htpasswd -n[imBps] [ -C cost ] username
 $ htpasswd -nb[mBps] [ -C cost ] username password
