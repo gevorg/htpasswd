@@ -1,5 +1,8 @@
 # htpasswd
-[Node.js](http://nodejs.org/) package for HTTP Basic Authentication password file utility.
+
+CLI tool for managing HTTP Basic Authentication password file.
+
+Basically, this is a Node.js implementation of Apache's [`htpasswd`](https://httpd.apache.org/docs/2.4/programs/htpasswd.html) utility.
 
 [![Build Status](https://api.travis-ci.org/http-auth/htpasswd.png)](https://travis-ci.org/http-auth/htpasswd)
 
@@ -14,7 +17,7 @@ Via [npm](http://npmjs.org/):
 
 ```bash
 $ npm install -g htpasswd
-```	
+```
 ## Usage
 
 ```bash
@@ -23,7 +26,7 @@ $ htpasswd -b[cmBpsDv] [ -C cost ] passwordfile username password
 
 $ htpasswd -n[imBps] [ -C cost ] username
 $ htpasswd -nb[mBps] [ -C cost ] username password
-```	
+```
 
 ## Options
 
