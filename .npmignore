@@ -6,3 +6,5 @@ htpasswd.iml
 .settings
 test
 .travis.yml
+.github
+.eslintrc.json
