@@ -4,7 +4,7 @@ CLI tool for managing HTTP Basic Authentication password file.
 
 Basically, this is a Node.js implementation of Apache's [`htpasswd`](https://httpd.apache.org/docs/2.4/programs/htpasswd.html) utility.
 
-[![Build Status](https://api.travis-ci.org/http-auth/htpasswd.png)](https://travis-ci.org/http-auth/htpasswd)
+[![build](https://github.com/http-auth/htpasswd/workflows/build/badge.svg)](https://github.com/http-auth/htpasswd/actions?query=workflow%3Abuild)
 
 ## Installation
 
@@ -67,11 +67,6 @@ You can find list of issues using **[this link](http://github.com/http-auth/htpa
  - **[apache-md5](https://github.com/http-auth/apache-md5)** - Node.js module for Apache style password encryption using md5.
  - **[apache-crypt](https://github.com/http-auth/apache-crypt)** - Node.js module for Apache style password encryption using crypt(3).
  - **[bcrypt.js](https://github.com/dcodeIO/bcrypt.js)** - Optimized bcrypt in plain JavaScript with zero dependencies.
-
-## Development dependencies
-
- - **[mocha](https://mochajs.org/)** - simple, flexible, fun javascript test framework for node.js & the browser.
- - **[chai](http://chaijs.com/)** - BDD / TDD assertion framework for node.js and the browser that can be paired with any testing framework.
 
 ## License
 
