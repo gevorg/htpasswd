@@ -1,10 +1,11 @@
 .gitignore
 node_modules
 .project
-.idea
 htpasswd.iml
+.idea
 .settings
 test
 .travis.yml
 .github
 .eslintrc.json
+.prettier.config.js
