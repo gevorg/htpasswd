@@ -11,7 +11,7 @@ Basically, this is a Node.js implementation of Apache's [`htpasswd`](https://htt
 Via git (or downloaded tarball):
 
 ```bash
-$ git clone https://github.com/gevorg/htpasswd.git
+$ git clone git@github.com:gevorg/htpasswd.git
 ```
 Via [npm](http://npmjs.org/):
 
